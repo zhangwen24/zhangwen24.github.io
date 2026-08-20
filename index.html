@@ -215,23 +215,28 @@
 
     /* ===== 技能 ===== */
     .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .skill { padding: 32px; border-radius: 18px; transition: .4s; }
+    .skill { padding: 32px; border-radius: 18px; transition: .4s; text-align: center; }
     .skill:hover { border-color: rgba(14,159,146,.3); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(60,60,110,.12); }
     .skill-icon {
-      width: 42px; height: 42px; border-radius: 12px; margin-bottom: 20px;
+      width: 42px; height: 42px; border-radius: 12px; margin: 0 auto 20px;
       background: linear-gradient(145deg, rgba(109,90,230,.1), rgba(14,159,146,.08));
       border: 1px solid rgba(109,90,230,.2);
       display: flex; align-items: center; justify-content: center;
     }
     .skill-icon svg { width: 18px; height: 18px; stroke: var(--violet); stroke-width: 1.5; fill: none; }
     .skill-title { font-size: .95rem; font-weight: 600; margin-bottom: 16px; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .skill-tag {
       font-size: .74rem; padding: 5px 14px; border-radius: 100px;
       background: rgba(0,0,0,.03); border: 1px solid var(--glass-border);
       color: var(--text-2); transition: .3s; white-space: nowrap;
     }
     .skill-tag:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(14,159,146,.06); box-shadow: 0 0 14px rgba(14,159,146,.14); }
+
+    /* 语言专栏：跨满整行居中布局 */
+    .skill.lang { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 32px; text-align: center; }
+    .skill.lang .skill-icon { margin-bottom: 0; }
+    .skill.lang .skill-title { margin-bottom: 0; }
 
     /* ===== 联系 ===== */
     .contact { text-align: center; padding-bottom: 150px; }
@@ -488,7 +493,7 @@
             <ul class="exp-details">
               <li><strong>风控智能体搭建与逻辑优化：</strong>主导内容审核 Agent 全流程产品设计，围绕违规识别、敏感词分级场景拆分业务节点，设计「图文双审 + 小模型前置过滤 + 大模型兜底复核」分层架构，通过持续 Prompt 迭代优化模型适配性，<strong>整体审核效率提升 30% 以上</strong>。</li>
               <li><strong>OpenClaw Skill 开发与撰写：</strong>参与 No.0-SKILL 安全技能开发落地，针对六大核心认知文件设计安全防护逻辑，根据五级风险分级识别改动意图，监控脚本实现定时巡检、防篡改、备份与异常告警，<strong>斩获 2026 安全创客汇创业精英赛道季军，促成 50 万元签约</strong>。</li>
-              <li><strong>大模型评测专项负责人：</strong>两周内统筹 <strong>22 家企业评测全流程</strong>，参与搭建量化评测指标体系，实时响应技术问题与异常报错解决，归集全量测试数据，完成多模型对比分析，输出完整评测报告；围绕审核核心需求（时效、精度），设计覆盖理解精度、推理速度、判定准确率及稳定性的测试集，全面评估各系列模型优劣势，形成能力分析报告，为企业筛选优质大模型提供决策依据。测试企业包括：岚图汽车科技股份有限公司、东风汽车集团股份有限公司、武钢资源集团大冶铁矿有限公司等。</li>
+              <li><strong>大模型评测专项负责人：</strong>两周内统筹 <strong>22 家企业评测全流程</strong>，参与搭建量化评测指标体系，实时响应技术问题与异常报错解决，归集全量测试数据，完成多模型对比分析，输出完整评测报告；围绕审核核心需求（时效、精度），设计覆盖理解精度、推理速度、判定准确率及稳定性的测试集，全面评估各系列模型优劣势，形成能力分析报告，为企业筛选优质大模型提供决策依据。测试企业包括：<strong>岚图汽车科技股份有限公司</strong>、<strong>东风汽车集团股份有限公司</strong>、<strong>武钢资源集团大冶铁矿有限公司</strong>等。</li>
               <li><strong>省级工业数据集评测平台负责人：</strong>设计数据平稳性、文本困惑度等指标的量化评分算法；以「自适应抽帧 + 流式下载」「哈希桶聚类」「异步线程池 + 取消检查点」策略解决大规模批跑瓶颈；借助 Qoder 完成全栈改造，<strong>累计合同额突破百万元</strong>。</li>
             </ul>
           </div>
@@ -540,13 +545,13 @@
           </div>
           <h3 class="proj-title">H5 游戏合规自动化审核系统（多 Agent 协同）</h3>
           <ul>
-            <li><strong>双智能体协同架构：</strong>设计「探索 Agent + 报告 Agent」架构，探索 Agent 基于 MLLM 纯视觉驱动，在无 DOM 树、无 Accessibility 接口约束下，仅依赖截图像素输入实现对任意陌生 H5 游戏的自主导航与关键页面物料采集。</li>
-            <li><strong>四阶段渐进式探索引擎：</strong>全页扫描 → 目标识别 → 特定目标点击 → 渐进式深度探索；决策层融合 MLLM 反思、语义导航、标签匹配等多策略并行决策，并通过跨页面已探索出口持久化记忆（标签 + bbox 双重匹配）防止重复探索。</li>
-            <li><strong>确定性优先并行交互：</strong>关键词命中即时触发、未命中降级至 MLLM 语义识别，兼顾低延迟与高准确率；支持横屏游戏自动检测与 viewport 动态切换，兼容竖屏 / 横屏两种游戏形态。</li>
-            <li><strong>报告自动生成与物料去重：</strong>报告 Agent 基于 LLM 九章节分阶段并行生成策略，自动输出符合版号申请规范的文档；物料采集端采用四层截图去重机制（MD5 字节去重 → dhash 感知哈希 → 像素 MAE → MLLM 验证）。</li>
-            <li><strong>质量保障闭环：</strong>三物料一致性对账（game_info.json / description.txt / screenshots）自动修正缺失章节；Prompt 权威性引导、后处理未识别条目过滤、图文一致性校验三层保障，输出零冗余、强一致。</li>
+            <li><strong>接口化封装与协同流水线：</strong>将多 Agent 协同能力封装为基于 FastAPI 的标准化接口，仅需传入游戏链接即可自动触发「探索 Agent + 报告 Agent」协同流水线。</li>
+            <li><strong>一主多副协同架构：</strong>探索 Agent 基于 MLLM 纯视觉驱动（无需 DOM 树 / Accessibility 接口），主 Agent 内置跨页面已探索出口持久化记忆机制（标签 + bbox 双重匹配），具备顶层规划和任务调度能力——知道何时调用哪个副 Agent、如何融合多策略决策结果，并对加载失败、超时等异常自动执行预设兜底规则；副 Agent 层包含 Gameplay Agent（自主理解页面按钮语义与教程逻辑，模拟真实用户游玩）、物料 Agent（面向版号申报所需的八类物料目标，独立执行定向采集）、监控 Agent（实时观测探索进度，监控大模型调用超时与页面加载异常）。</li>
+            <li><strong>ReAct 推理范式：</strong>探索引擎践行 ReAct（Reasoning + Acting）推理范式，每一轮行动前均进行「情境理解 → 目标规划 → 动作执行 → 结果反思 → 下一轮规划」的闭环决策。</li>
+            <li><strong>确定性优先交互：</strong>关键词命中即时触发，未命中降级至 MLLM 语义理解，兼顾低延迟与高准确率；支持横屏游戏自动检测与 viewport 动态切换，保证竖 / 横屏游戏全覆盖。</li>
+            <li><strong>报告生成与质量保障：</strong>报告 Agent 接收探索物料后，基于 LLM 九章节分阶段并行生成策略，自动输出符合版号申请规范的文档。物料采集端采用四层截图去重机制（MD5 字节去重 → dhash 感知哈希 → 像素 MAE → MLLM 验证最终去重），配套三物料一致性对账（game_info.json、description.txt、screenshots）自动修正缺失章节，确保采集物料完整可靠；报告生成端引入 Prompt 权威性引导、后处理未识别条目过滤、图文一致性校验三层质量保障，确保文档输出零冗余、强一致。整套流水线将传统人工数小时的审核流程压缩至分钟级。</li>
           </ul>
-          <div class="proj-result">▸ 全流程支持一行命令端到端执行，<strong>将人工数小时审核压缩至分钟级</strong></div>
+          <div class="proj-result">▸ 标准化 FastAPI 接口封装，<strong>传入游戏链接即自动触发「探索 → 采集 → 报告」全流程</strong></div>
         </div>
 
         <div class="proj glass tilt reveal">
@@ -648,7 +653,14 @@
           <h3 class="skill-title">产品与 AI</h3>
           <div class="skill-tags">
             <span class="skill-tag">Agent 工作流</span><span class="skill-tag">Prompt 工程</span><span class="skill-tag">RAG 部署</span>
-            <span class="skill-tag">用户画像</span><span class="skill-tag">A/B 测试</span><span class="skill-tag">CET-6</span>
+            <span class="skill-tag">用户画像</span><span class="skill-tag">A/B 测试</span>
+          </div>
+        </div>
+        <div class="skill glass reveal lang">
+          <div class="skill-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <h3 class="skill-title">语言能力</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">CET-6（研究生阶段免修英语）</span>
           </div>
         </div>
       </div>
